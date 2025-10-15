@@ -5,33 +5,33 @@ import camp.nextstep.edu.missionutils.Console.readLine
 fun main() {
 
     println("덧셈할 문자열을 입력해주세요")
-    var test_string: String = readLine()
+    var Input: String = readLine()
 
     var NoNumberRegex = Regex("[1-9]+")
-    if(!NoNumberRegex.containsMatchIn(test_string)){
+    if(!NoNumberRegex.containsMatchIn(Input)){
         throw IllegalArgumentException("숫자가 포함된 문자열을 입력해주세요.")
     }
 
-    var list = mutableListOf(':',',')
+    var Separator = mutableListOf(':',',')
 
-    val regex = Regex("//(.)\\\\n(.*)")
-    val match = regex.find(test_string)
+    val Customregex = Regex("//(.)\\\\n(.*)")
+    val match = Customregex.find(Input)
     if (match != null) {
-        list.add(match.groupValues[1].get(0))
-        test_string = match.groupValues[2]
+        Separator.add(match.groupValues[1].get(0))
+        Input = match.groupValues[2]
     }
 
-    for(i in 0 until list.count()){
-        test_string = test_string.replace(list[i],'*')
+    for(i in 0 until Separator.count()){
+        Input = Input.replace(Separator[i],'*')
     }
 
-    var finalArray = test_string.split('*')
+    var NumberArray = Input.split('*')
 
     var answer = 0
 
-    for(i in 0 until finalArray.count()){
+    for(i in 0 until NumberArray.count()){
         try {
-            answer += Integer.parseInt(finalArray[i])
+            answer += Integer.parseInt(NumberArray[i])
         } catch (e: NumberFormatException){
             throw IllegalArgumentException("잘못된 입력입니다.")
         }
