@@ -27,16 +27,16 @@ fun main() {
 
     var NumberArray = Input.split('*')
 
-    var answer = NumberArray.sumOf {it.toInt()}
+    var answer = 0
 
     for(i in 0 until NumberArray.count()){
         try {
-            answer += Integer.parseInt(NumberArray[i])
+            var IntegerNumber = Integer.parseInt(NumberArray[i])
+            if(IntegerNumber < 0) throw NumberFormatException()
+            else answer += IntegerNumber
         } catch (e: NumberFormatException){
             throw IllegalArgumentException("잘못된 입력입니다.")
         }
     }
-
     print("결과 : $answer")
-
 }
