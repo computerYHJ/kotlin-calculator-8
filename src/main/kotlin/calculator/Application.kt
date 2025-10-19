@@ -17,7 +17,7 @@ fun main() {
     val Customregex = Regex("//(.)\\\\n(.*)")
     val match = Customregex.find(Input)
     if (match != null) {
-        Separator.add(match.groupValues[1].get(0))
+        Separator.add(match.groupValues[1][0])
         Input = match.groupValues[2]
     }
 
@@ -27,7 +27,7 @@ fun main() {
 
     var NumberArray = Input.split('*')
 
-    var answer = 0
+    var answer = NumberArray.sumOf {it.toInt()}
 
     for(i in 0 until NumberArray.count()){
         try {
